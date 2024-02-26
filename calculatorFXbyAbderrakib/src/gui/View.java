@@ -1,26 +1,44 @@
 package gui;
 
+import java.awt.Color;
+
 import business.Model;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class View {
 	private Pane pane =new Pane();
 	//button
-	private Button one=new Button("1");
-	private Button two=new Button("2");
-	private Button tree=new Button("3");
-	private Button four=new Button("4");
-	private Button five=new Button("5");
-	private Button six=new Button("6");
-	private Button seven=new Button("7");
-	private Button eight=new Button("8");
-	private Button nine=new Button("9");
-	private Button plus=new Button("+");
-	private Button minus=new Button("-");
-	private Button multiplication=new Button("x");
+	 Button zero=new Button("0");
+	 Button one=new Button("1");
+	 Button two=new Button("2");
+	 Button tree=new Button("3");
+	 Button four=new Button("4");
+	 Button five=new Button("5");
+	 Button six=new Button("6");
+	 Button seven=new Button("7");
+	 Button eight=new Button("8");
+	 Button nine=new Button("9");
+	 Button plus=new Button("+");
+	 Button minus=new Button("-");
+	 Button multiplication=new Button("x");
+	 Button equal =new Button("=");
+	//private TextArea abgabe=new TextArea();
+	//private TextField abgabe = new TextField();
+	 Label allAbgabe=new Label("");
+	 Label eingabe = new Label("");
 	
 	
 	
@@ -28,47 +46,113 @@ public class View {
 	private Model model;
 	
 	public View(Stage primaryStage, Control control,Model model) {
-		Scene scene= new Scene(this.pane,700,480);
+		Scene scene= new Scene(this.pane,500,480);
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("TaschenRechner by Abderrakib");
 		primaryStage.show();
 		this.control=control;
 		this.model=model;
 		this.initialisiereKompo();
+		this.buttoneingabe(zero);
+		this.buttoneingabe(one);
+		this.buttoneingabe(two);
+		
+		this.buttoneingabe(tree);
+		this.buttoneingabe(four);
+		this.buttoneingabe(five);
+		this.buttoneingabe(six);
+		this.buttoneingabe(seven);
+		this.buttoneingabe(eight);
+		this.buttoneingabe(nine);
+		this.buttoneingabe(plus);
+		this.buttoneingabe(minus);
+		this.buttoneingabe(multiplication);
 	}
 
+	
+
 	private void initialisiereKompo() {
+		zero.setLayoutX(140);
+		zero.setLayoutY(390);
+		zero.setMinSize(70,70);
+		
 		one.setLayoutX(20);
 		one.setLayoutY(300);
-		one.setMaxWidth(100);
-		one.setMaxHeight(200);
-		two.setLayoutX(0);
-		two.setLayoutY(0);
-		tree.setLayoutX(0);
-		tree.setLayoutY(0);
+		one.setMinSize(70,70);
+		
+		two.setLayoutX(140);
+		two.setLayoutY(300);
+		two.setMinSize(70,70);
+		
+		tree.setLayoutX(260);
+		tree.setLayoutY(300);
+		tree.setMinSize(70,70);
+		
 		four.setLayoutX(20);
 		four.setLayoutY(210);
-		four.setMaxSize(80, 80);
-		five.setLayoutX(0);
-		five.setLayoutY(0);
-		six.setLayoutX(0);
-		six.setLayoutY(0);
+		four.setMinSize(70,70);
+		
+		five.setLayoutX(140);
+		five.setLayoutY(210);
+		five.setMinSize(70,70);
+		
+		six.setLayoutX(260);
+		six.setLayoutY(210);
+		six.setMinSize(70,70);
+		
 		seven.setLayoutX(20);
 		seven.setLayoutY(120);
-		seven.setMaxSize(80, 80);
-		eight.setLayoutX(0);
-		eight.setLayoutY(0);
-		nine.setLayoutX(0);
-		nine.setLayoutY(0);
-		plus.setLayoutX(0);
-		plus.setLayoutY(0);
-		minus.setLayoutX(0);
-		minus.setLayoutY(0);
+		seven.setMinSize(70,70);
+		
+		eight.setLayoutX(140);
+		eight.setLayoutY(120);
+		eight.setMinSize(70,70);
+		
+		nine.setLayoutX(260);
+		nine.setLayoutY(120);
+		nine.setMinSize(70,70);
+		
+		plus.setLayoutX(380);
+		plus.setLayoutY(120);
+		plus.setMinSize(70,70);
+		
+		minus.setLayoutX(380);
+		minus.setLayoutY(210);
+		minus.setMinSize(70,70);
+		
 		multiplication.setLayoutX(20);
 		multiplication.setLayoutY(390);
-		multiplication.setMaxSize(80, 80);
+		multiplication.setMinSize(70,70);
 		
-		pane.getChildren().addAll(one,four,seven,multiplication);
+		equal.setLayoutX(380);
+		equal.setLayoutY(300);
+		equal.setMinSize(70,160);
+		
+		pane.getChildren().addAll(zero,one,two,tree,four,five,six,seven,eight,nine,plus,minus,multiplication,equal);
+		
+		eingabe.setLayoutX(20);
+		eingabe.setLayoutY(40);
+		eingabe.setMaxSize(430,90);
+		
+		
+		allAbgabe.setLayoutX(20);
+		allAbgabe.setLayoutY(10);
+		allAbgabe.setMaxSize(430,90);
+		pane.getChildren().addAll(eingabe,allAbgabe);
+	
+	}
+	private void buttoneingabe(Button button) {
+		button.setOnAction(e-> schreibe( button));
 		
 	}
+
+	void schreibe(Button button) {
+		this.control.schreibe(button);
+		
+	}
+
+
+
+
+	
 }
