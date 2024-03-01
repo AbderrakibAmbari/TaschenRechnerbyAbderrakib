@@ -27,10 +27,14 @@ public class Control {
 			
 		}
 		else if(button.getText().equals("-")) {
+			number-=Integer.parseInt(t);
+			this.view.allAbgabe.setText(""+number);
 			
 		}
 		else if(button.getText().equals("x")) {
-			
+			//in that exemple i have the problem of zero at the beginning which my number is equal to 0 . so any number multiplied by 
+			//number*=Integer.parseInt(t);
+			//this.view.allAbgabe.setText(""+number);
 		}
 		else {
 			this.view.eingabe.setText(t+button.getText());
